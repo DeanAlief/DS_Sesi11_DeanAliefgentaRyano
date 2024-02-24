@@ -7,6 +7,7 @@ const Page = require('./page');
 // get fieldPassword () { return $('#password'); }
 // get buttonLogin () { return $('#login-button'); }
 
+//variable grouping
 const element = {
     fieldUsername: $('#user-name'),
     fieldPassword: $('#password'),
