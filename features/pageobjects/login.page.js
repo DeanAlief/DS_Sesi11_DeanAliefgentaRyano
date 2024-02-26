@@ -12,13 +12,12 @@ const element = {
     fieldUsername: $('#user-name'),
     fieldPassword: $('#password'),
     buttonLogin: $('#login-button'),
-    errorLockedOutUser: (dynamicMessage) => $(`//h3[text()="${dynamicMessage}"]`)
+    errorLockedOutUser: (dynamicMessage) => $(`//h3[text()="${dynamicMessage}"]`),
+    burgerbtn: $('#react-burger-menu-btn'),
+    logoutbtn: $('#logout_sidebar_link')
 }
 
 class LoginPage extends Page {
-    // NOTE: elements collection
-
-    
 
     async login (username) {
         await element.fieldUsername.waitForDisplayed({ timeout: 2500 });
@@ -32,9 +31,16 @@ class LoginPage extends Page {
         await expect(element.errorLockedOutUser(dynamicMessage)).toBeDisplayed()
     }
 
+    async logout() {
+        await element.burgerbtn.click();
+        await element.logoutbtn.click();
+        expect(browser).toHaveUrlContaining('/');
+    }
+    
     open () {
         return super.open('/'); // NOTE: will open https://www.saucedemo.com/
     }
 }
+
 
 module.exports = new LoginPage();
